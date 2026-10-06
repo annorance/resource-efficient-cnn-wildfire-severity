@@ -19,7 +19,7 @@ The models were evaluated not only based on classification performance, but also
 
 Assessing post-wildfire severity manually can be time-consuming and susceptible to human error. A computer vision-based classification system can support a more consistent and automated assessment process.
 
-However, higher-performing CNN architectures often come with increased computational requirements. Therefore, this project investigates the trade-off between classification performance and computational efficiency.
+However, higher-performing CNN architectures often come with increased computational requirements. Therefore, this project investigates the trade-off between classification performance and computational efficiency to identify the model that best balances accuracy and computational efficiency.
 
 ## Dataset
 
@@ -59,7 +59,7 @@ Silhouette Index Evaluation
       ↓
 Label Assignment
       ↓
-Image Preprocessing
+Image Preprocessing (image resizing; normalization; and augmentation, incl. horizontal flipping, random rotation, and random brightness transformation )
       ↓
 Train / Validation / Test Split
       ↓
@@ -94,7 +94,7 @@ The dataset was split into:
 | Validation |        20% |
 | Test       |        10% |
 
-Augmented versions of an image were kept within the same partition as the original image to avoid data leakage across train, validation, and test sets.
+Augmented images were kept in the same partition as their original images to ensure a balanced distribution of augmented samples across the training, validation, and test sets.
 
 ## Model Development
 
@@ -110,6 +110,24 @@ The project uses pretrained CNN architectures and adapts their final classificat
 | EfficientNet-Lite0 | PyTorch   | Transfer learning |
 
 The pretrained weights were loaded before modifying the classification layers and dropout configuration.
+
+## Baseline Model Training
+
+Before hyperparameter tuning, a baseline model was trained for each CNN architecture using the training set and evaluated on the validation set. All baseline models were trained for 100 epochs using GPU acceleration.
+
+The baseline configuration was kept consistent across architectures:
+
+| Hyperparameter | Baseline Value |
+|---|---|
+| Batch size | 32 |
+| Learning rate | 0.001 |
+| Optimizer | Adam |
+| Dropout | 0.2 |
+| Loss function | Categorical Cross-Entropy |
+| Evaluation metric | Accuracy |
+| Epochs | 100 |
+
+This stage produced one baseline model for each architecture, resulting in **four baseline models**. The baseline results were then used as a reference for evaluating the impact of hyperparameter tuning.
 
 ## Hyperparameter Tuning
 
@@ -152,13 +170,25 @@ Model efficiency was additionally evaluated using:
 
 ### Best-performing model
 
-**SqueezeNet V1.1** achieved the best overall test performance among the tuned models, with:
+**SqueezeNet V1.1** achieved the best overall test performance among the tuned models, improving upon the best baseline model, **MobileNet V3-Small**.
 
-* Test Accuracy: **0.56**
-* Macro F1-score: **0.56**
-* Micro F1-score: **0.56**
+| Model | Test Accuracy | Macro F1-score | Micro F1-score |
+|---|---:|---:|---:|
+| Baseline — MobileNet V3-Small | 0.52 | 0.53 | 0.52 |
+| Tuned — SqueezeNet V1.1 | **0.56** | **0.56** | **0.56** |
 
-The model also provided a favorable balance between classification performance and computational efficiency.
+The best-performing SqueezeNet V1.1 configuration was:
+
+| Hyperparameter | Value |
+|---|---:|
+| Batch size | 16 |
+| Dropout | 0.5 |
+| Learning rate | 0.0001 |
+| Optimizer | Adam |
+| L1 regularization | 0.001 |
+| L2 regularization | 0.01 |
+
+Compared with the best baseline model, SqueezeNet V1.1 improved test accuracy by **0.04**, macro F1-score by **0.03**, and micro F1-score by **0.04**. The model also provided a favorable balance between classification performance and computational efficiency.
 
 ### Model comparison
 
@@ -173,16 +203,18 @@ The model also provided a favorable balance between classification performance a
 
 ## Model Efficiency
 
-The project also compares model size and training/validation time because the objective is not solely to maximize classification performance.
+Model efficiency was evaluated based on **model size** and **training and validation time** over 100 epochs. Model size was calculated from the number of model parameters.
 
-The estimated model sizes ranged from approximately:
+| Model | Model Size (MB) | Training & Validation Time (minutes) |
+|---|---:|---:|
+| ShuffleNetV2-x0.5 | 1.35 | 28.02 |
+| SqueezeNet V1.1 | 2.77 | 23.83 |
+| MobileNet V3-Small | 5.86 | 43.40 |
+| EfficientNet-Lite0 | 13.04 | 53.86 |
 
-* **1.35 MB** — ShuffleNetV2-x0.5
-* **5.86 MB** — MobileNet V3-Small
-* **28.02 MB** — SqueezeNet V1.1
-* **43.40 MB** — EfficientNet-Lite0
+**SqueezeNet V1.1** had the shortest training and validation time (**23.83 minutes**), while **ShuffleNetV2-x0.5** had the smallest model size (**1.35 MB**). This makes the model provided a favorable **balance** between **classification performance** and **computational efficiency**. 
 
-This comparison highlights the trade-off between predictive performance and computational requirements.
+On the other hand, **EfficientNet-Lite0** had the largest model size (**13.04 MB**) and longest training and validation time (**53.86 minutes**). These results highlight that there is still a trade-off between classification performance and computational efficiency in resource-constrained environments.
 
 ## Key Takeaways
 
