@@ -1,0 +1,1 @@
+# resource-efficient-cnn-wildfire-severity
