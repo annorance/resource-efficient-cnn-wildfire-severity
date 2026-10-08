@@ -124,7 +124,7 @@ The baseline configuration was kept consistent across architectures:
 | Optimizer | Adam |
 | Dropout | 0.2 |
 | Loss function | Categorical Cross-Entropy |
-| Evaluation metric | Accuracy |
+| Evaluation metric | macro F1-score |
 | Epochs | 100 |
 
 This stage produced one baseline model for each architecture, resulting in **four baseline models**. The baseline results were then used as a reference for evaluating the impact of hyperparameter tuning.
