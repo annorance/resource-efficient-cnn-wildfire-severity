@@ -163,7 +163,7 @@ The final models were evaluated using the test set with:
 Model efficiency was additionally evaluated using:
 
 * Number of parameters
-* Estimated model size
+* Estimated model size, calculated assuming FP32 precision (4 bytes per parameter)
 * Training and validation time
 
 ## Results
