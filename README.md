@@ -227,32 +227,6 @@ On the other hand, **EfficientNet-Lite0** had the largest model size (**13.04 MB
 * Evaluated both predictive performance and computational efficiency.
 * Identified **SqueezeNet V1.1** as the most suitable architecture for the study's objective.
 
-## Repository Structure
-
-```text
-├── Python Notebooks/
-│   ├── 01_data_labeling.ipynb
-│   ├── 02_data_preprocessing.ipynb
-│   ├── 03_data_splitting.ipynb
-│   ├── 04_baseline_model.ipynb
-│   ├── 05_hyperparameter_tuning_mobilenet_squeezenet.ipynb
-│   ├── 06_hyperparameter_tuning_shufflenet_efficientnet.ipynb
-│   └── 07_model_evaluation.ipynb
-│
-├── results/
-│   ├── figures/
-│   └── metrics/
-│
-├── models/
-│   └── README.md
-│
-├── data/
-│   └── README.md
-│
-└── Poster/
-    └── Thesis Poster.pdf
-```
-
 ## Reproducibility
 
 The notebooks contain the experimental workflow used in this research.
