@@ -230,7 +230,7 @@ On the other hand, **EfficientNet-Lite0** had the largest model size (**13.04 MB
 ## Repository Structure
 
 ```text
-├── notebooks/
+├── Python Notebooks/
 │   ├── 01_data_labeling.ipynb
 │   ├── 02_data_preprocessing.ipynb
 │   ├── 03_data_splitting.ipynb
@@ -249,8 +249,8 @@ On the other hand, **EfficientNet-Lite0** had the largest model size (**13.04 MB
 ├── data/
 │   └── README.md
 │
-└── docs/
-    └── thesis_poster.pdf
+└── Poster/
+    └── Thesis Poster.pdf
 ```
 
 ## Reproducibility
