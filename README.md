@@ -109,6 +109,11 @@ The project uses pretrained CNN architectures and adapts their final classificat
 | ShuffleNetV2-x0.5  | PyTorch   | Transfer learning |
 | EfficientNet-Lite0 | PyTorch   | Transfer learning |
 
+MobileNet V3-Small, SqueezeNet V1.1, and ShuffleNetV2-x0.5 were implemented using PyTorch's torchvision.models module. EfficientNet-Lite0 was implemented using the architecture released by RangiLyu (2020).
+
+- PyTorch / TorchVision: https://pytorch.org/vision/stable/models.html
+- EfficientNet-Lite: RangiLyu/EfficientNet-Lite
+
 The pretrained weights were loaded before modifying the classification layers and dropout configuration.
 
 ## Baseline Model Training
