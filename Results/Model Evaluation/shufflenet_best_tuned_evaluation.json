@@ -1,0 +1,48 @@
+{
+    "best_config": {
+        "batch_size": 16,
+        "dropout": 0.3,
+        "optimizer": "adam",
+        "lr": 0.001,
+        "l1_lambda": 0.001,
+        "l2_lambda": 0.01
+    },
+    "average_test_loss": 1.1373133618256142,
+    "accuracy": 0.5566666666666666,
+    "precision": {
+        "precision_per_class": {
+            "Very Light": 0.5256410256410257,
+            "Light":0.5923076923076923,
+            "Moderate":0.5833333333333334,
+            "Severe":0.4782608695652174,
+            "Very Severe":0.5973451327433629
+        },
+        "macro_average_precision": 0.5553776107181263,
+        "micro_average_precision": 0.5566666666666666
+    },
+    "recall": {
+        "recall_per_class": {
+            "Very Light": 0.6029411764705882,
+            "Light": 0.4375,
+            "Moderate": 0.6918604651162791,
+            "Severe": 0.44,
+            "Very Severe": 0.625
+        },
+        "macro_average_recall": 0.5594603283173735,
+        "micro_average_recall": 0.5566666666666666
+    },
+    "f1_score": {
+        "f1_score_per_class": {
+            "Very Light": 0.5616438356164384,
+            "Light": 0.5032679738562091,
+            "Moderate": 0.6329787234042554,
+            "Severe": 0.4583333333333333,
+            "Very Severe": 0.6108597285067874
+        },
+        "macro_average_f1_score": 0.5534167189434047,
+        "micro_average_f1_score": 0.5566666666666666
+    },
+    "total_training_validation_duration_seconds": 1681.1274445056915,
+    "total_parameters": 354925,
+    "model_size_mb": 1.3539
+}
